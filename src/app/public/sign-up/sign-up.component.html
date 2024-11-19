@@ -1,0 +1,45 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.7)" size="medium" color="#fff" type="ball-scale-multiple">
+</ngx-spinner>
+<div class="signup-container">
+    <form [formGroup]="signUpForm" (ngSubmit)="submitForm()">
+        <mat-card appearance="outlined" class="signin-card">
+
+            <h1>
+                Sign Up
+            </h1>
+            <mat-form-field>
+                <mat-label>Enter Your User Name</mat-label>
+                <input matInput formControlName="userName" />
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label type="email">Enter Your Email</mat-label>
+                <input matInput formControlName="email" />
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Enter your password</mat-label>
+                <input matInput [type]="hide() ? 'password' : 'text'" formControlName="password" />
+                <a mat-icon-button matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide()">
+                    <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </a>
+            </mat-form-field>
+            <div class="d-flex">
+                <div>
+                    <button mat-fab extended type="submit" [disabled]="!signUpForm.valid">
+                        <mat-icon>person_add</mat-icon>
+                        Sign Up
+                    </button>
+                </div>
+                <div class="ms-3">
+                    <a mat-fab extended routerLink="/signin">
+                        <mat-icon>login</mat-icon>
+                        Sign In
+                    </a>
+                </div>
+            </div>
+
+        </mat-card>
+    </form>
+</div>

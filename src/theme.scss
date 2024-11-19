@@ -1,0 +1,50 @@
+// @use '@angular/material' as mat;
+// @use './palettes.scss' as palettes;  // Corrected path for clarity
+
+// // Define primary, accent, and warn palettes using your custom palettes from `palettes.scss`
+// $my-primary: mat.define-palette(palettes.$m2-primary);
+// $my-accent: mat.define-palette(palettes.$m2-accent, A200, A100, A400);
+// $my-warn: mat.define-palette(palettes.$m2-error);
+
+// // Define the typography configuration
+// $my-typography: mat.define-typography-config((
+//   font-family: 'Roboto',
+//   display: mat.define-typography-level(32px, 48px, 700), // Example for display text
+//   body: mat.define-typography-level(14px, 20px, 400),    // Example for body text
+// ));
+
+// // Define the light theme
+// $my-theme: mat.define-light-theme(
+//   (
+//     color: (
+//       primary: $my-primary, 
+//       accent: $my-accent,
+//       warn: $my-warn,
+//     ),
+//     typography: $my-typography,
+//     density: 0, // Adjust density to 0 for default (you can change if needed)
+//   )
+// );
+
+// // Define the dark theme
+// $my-dark-theme: mat.define-dark-theme(
+//   (
+//     color: (
+//       primary: $my-primary,
+//       accent: $my-accent,
+//       warn: $my-warn,
+//     ),
+//     typography: $my-typography,  // Optionally add typography to dark theme as well
+//   )
+// );
+
+// // Initialize core styles and apply the light theme to all components
+// @include mat.core(); // Initializes all default styles for Angular Material
+
+// // Apply the custom light theme to all Angular Material components
+// @include mat.all-component-themes($my-theme);
+
+// // Apply dark theme when `.dark-theme` class is present on the body
+// .dark-theme {
+//   @include mat.all-component-colors($my-dark-theme); // Apply the dark theme to components when the class is present
+// }
