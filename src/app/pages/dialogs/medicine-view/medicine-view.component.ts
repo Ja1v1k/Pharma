@@ -16,7 +16,6 @@ export class MedicineViewComponent {
   dashboardService = inject(DashboardService);
 
   ngOnInit(){
-    debugger
     const medicineIds = [this.data.medicine_id]
     this.dashboardService.getMedicineView(medicineIds).subscribe(res=>{
       console.log(res)
