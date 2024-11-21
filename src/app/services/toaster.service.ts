@@ -9,10 +9,26 @@ export class ToasterService {
 
   constructor() { }
 
-  toast(message: string, test: string, hposition: MatSnackBarHorizontalPosition = 'right', vposition: MatSnackBarVerticalPosition = 'bottom') {
+  toast(message: string, test: string, type:string,hposition: MatSnackBarHorizontalPosition = 'right', vposition: MatSnackBarVerticalPosition = 'bottom',) {
+    const cssclass = []
+    switch(type) {
+      case 'info':
+        cssclass.push('info')
+        // code block
+        break;
+        case 'error':
+        cssclass.push('red')
+        // code block
+        break;
+        default:
+        cssclass.push('green')
+        // code block
+    }
     this._snackBar.open(message, test, {
       horizontalPosition: hposition,
       verticalPosition: vposition,
+      panelClass:cssclass,
+      duration: 2300
     });
   }
 

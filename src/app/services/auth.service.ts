@@ -29,7 +29,7 @@ export class AuthService {
           this.spinner.hide();
         }, 2000);
       }, error => {
-        this.toasterService.toast('Error occurred', 'Close');
+        this.toasterService.toast('Error occurred', 'Close','error');
       })
     );
   }
@@ -42,7 +42,7 @@ export class AuthService {
           this.spinner.hide();
         }, 2000);
       }, error => {
-        this.toasterService.toast('Error occurred', 'Close');
+        this.toasterService.toast('Error occurred', 'Close','error');
       })
     );
   }

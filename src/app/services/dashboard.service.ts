@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -15,10 +15,10 @@ export class DashboardService {
       data.append('searchstring', searchstring)
       return this.http.post('https://dev-api.evitalrx.in/v1/fulfillment/medicines/search', data)
   }
-  getMedicineView(medicineIds):Observable<any> {
+  getMedicineView(medicineId:any):Observable<any> {
     const data = new FormData();
       data.append('apikey', 'wFIMP75eG1sQEh8vVAdXykgzF4mLhDw3')
-      data.append('medicine_ids', medicineIds)
+      data.append('medicine_id', medicineId)
       return this.http.post('https://dev-api.evitalrx.in/v1/fulfillment/medicines/view', data)
   }
 }

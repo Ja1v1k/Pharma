@@ -6,6 +6,8 @@ import { firstValueFrom } from 'rxjs';
 import { Medicine } from '../../interface/medicine.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { MedicineViewComponent } from '../dialogs/medicine-view/medicine-view.component';
+import { ToasterService } from '../../services/toaster.service';
+import { SharedService } from '../../services/shared.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -78,6 +80,11 @@ export class DashboardComponent {
 
   dashboardService = inject(DashboardService)
   cdr = inject(ChangeDetectorRef)
+  toasterService = inject(ToasterService)
+  sharedService = inject(SharedService)
+
+  dialogRef: any;
+  cartData: any[] = [];
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
 
@@ -125,17 +132,39 @@ export class DashboardComponent {
   dialog = inject(MatDialog);
 
   medicineView(data) {
-      debugger
-      const dialogRef = this.dialog.open(MedicineViewComponent,{
-        height: '400px',
-        width: '600px',
-        data:data
-      });
+      this.dashboardService.getMedicineView(data.medicine_id).subscribe(res=>{
+        if(res.data == null){
+          this.toasterService.toast('No data found', 'Close','info');
+          return
+        }
+       this.dialogRef = this.dialog.open(MedicineViewComponent,{
+          width: '50%', 
+          panelClass: 'custom-dialog-container',
+          data:res.data
+        });
+      })
 
-      dialogRef.afterClosed().subscribe(result => {
+      this.dialogRef.afterClosed().subscribe(result => {
         console.log(`Dialog result: ${result}`);
       });
   }
-  // checkOut(data){}
+  
+  checkOut(data){}
+
+  sendDataToCart(data){
+    debugger
+    if(this.cartData.some(x=> data.medicine_id == x.data.id)){
+      this.toasterService.toast('Already added', 'Close','info');
+      return 
+    }
+    this.dashboardService.getMedicineView(data.medicine_id).subscribe(res=>{
+      if(res.data == null){
+        this.toasterService.toast('No data found', 'Close','info');
+        return
+      }
+      this.cartData.push({...res,quantity:1})
+      this.sharedService.sendCartData(this.cartData)
+    })
+  }
 
 }

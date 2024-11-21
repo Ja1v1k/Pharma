@@ -20,5 +20,10 @@ export const routes: Routes = [
         canActivate:[authGuard],
         loadComponent: () => import('./pages/dashboard/dashboard.component').then(m => m.DashboardComponent)
     },
+    {
+        path: 'cart',
+        canActivate:[authGuard],
+        loadComponent: () => import('./pages/cart/cart.component').then(m => m.CartComponent)
+    },
     
 ];

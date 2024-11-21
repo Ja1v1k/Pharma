@@ -1,12 +1,24 @@
-<mat-toolbar class="header">
+<mat-toolbar class="header gap-4">
     <button mat-icon-button class="primary" aria-label="Example icon-button with menu icon">
       <mat-icon>menu</mat-icon>
     </button>
     <span>Vita Pharms</span>
     <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>favorite</mat-icon>
+    <button
+    class="theme-switch"
+    type="button"
+    aria-label="Toggle theme"
+    mat-icon-button
+    (click)="toggleTheme()"
+    matTooltip="Toggle theme"
+    >
+    <mat-icon>
+      {{ theme() === "light" ? "light_mode" : "dark_mode" }}
+    </mat-icon>
     </button>
+    <a mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" [routerLink]="['/cart']" routerLinkActive="router-link-active" >
+      <mat-icon [matBadge]="badge">add_shopping_cart</mat-icon>
+    </a>
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" (click)="logout()">
       <mat-icon>logout</mat-icon>
     </button>

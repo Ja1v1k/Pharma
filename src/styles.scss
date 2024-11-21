@@ -1,3 +1,47 @@
+@use "@angular/material" as mat;
+@use "./app/layout/header/header.component" as layout-theme;
+
+@include mat.core();
+
+$light-theme: mat.define-theme(
+  (
+    color: (
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    density: (
+    scale: -2,
+  )
+  )
+);
+$dark-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: dark,
+      primary: mat.$magenta-palette,
+      tertiary: mat.$violet-palette,
+    ),
+  )
+);
+
+html {
+  @include mat.all-component-themes($light-theme);
+  @include layout-theme.theme($light-theme);
+
+  background: mat.get-theme-color($light-theme, surface);
+
+  &.dark {
+    @include mat.all-component-colors($dark-theme);
+    @include layout-theme.theme($dark-theme);
+
+    background: mat.get-theme-color($dark-theme, surface);
+    .mat-background {
+  background-image: linear-gradient(#0f2027, #203a43,#2c5364)
+}
+  }
+}
+
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
@@ -10,14 +54,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 --whitesmoke: #f5f5f5;
 }
 
-.mat-background {
-  background: var(--dark);
-}
+// .mat-background {
+//   background: var(--dark);
+// }
 
 
-.mat-background {
-  background-image: linear-gradient(#0f2027, #203a43,#2c5364)
-}
+// .mat-background {
+//   background-image: linear-gradient(#0f2027, #203a43,#2c5364)
+// }
 
 p{
   color: var(--whitesmoke);
@@ -48,3 +92,60 @@ html, body {
   border-radius: 4px;
 }
 
+//dialog
+
+.custom-dialog-container {
+  // background-color: #004f4f;
+  color: #f5f5f5;
+  max-width: 50%;
+  padding: 24px;
+  border-radius: 8px;
+  --mat-dialog-container-max-width:1000px !important
+}
+
+
+
+.custom-dialog-container .mat-dialog-title {
+  color: #00dddd;
+}
+
+.custom-dialog-container .mat-dialog-content {
+  color: #f5f5f5;
+}
+
+.custom-dialog-container .mat-dialog-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.custom-dialog-container .mat-button {
+  background-color: #723600;
+  color: #f5f5f5;
+}
+
+.custom-dialog-container .mat-button:hover {
+  background-color: #ffb787;
+}
+
+
+// snack
+.red{
+  --mdc-snackbar-container-color:red !important;
+  --mdc-snackbar-supporting-text-color: white !important;
+  --mat-mdc-snack-bar-button-color: white;
+  white-space: pre-wrap
+
+}
+
+.green{
+  --mdc-snackbar-container-color: green !important;
+  --mdc-snackbar-supporting-text-color: white !important;
+  --mat-mdc-snack-bar-button-color: white !important;
+  white-space: pre-wrap
+}
+.info{
+  --mdc-snackbar-container-color: rgb(154, 147, 20) !important;
+  --mdc-snackbar-supporting-text-color: black !important;
+  --mat-mdc-snack-bar-button-color: black !important;
+  white-space: pre-wrap
+}
