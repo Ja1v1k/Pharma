@@ -30,7 +30,7 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom([
       AngularFireModule.initializeApp(firebaseConfig),
       AngularFireAuthModule,
-    ])
+    ]), provideAnimationsAsync()
 
   ]
 };
