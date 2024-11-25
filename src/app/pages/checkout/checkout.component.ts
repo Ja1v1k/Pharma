@@ -1,26 +1,35 @@
 import { Component, inject } from '@angular/core';
 import { MaterialModule } from '../../material.module';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { SharedService } from '../../services/shared.service';
-import { DashboardService } from '../../services/dashboard.service';
+import { SharedService } from '../../shared/services/shared.service';
+import { DashboardService } from '../../shared/services/dashboard.service';
+import { ToasterService } from '../../shared/services/toaster.service';
+import { NgxSpinnerComponent, NgxSpinnerService } from 'ngx-spinner';
+import { MatDialog } from '@angular/material/dialog';
+import { OrderSuccessComponent } from '../dialogs/order-success/order-success.component';
 
 @Component({
   selector: 'app-checkout',
   standalone: true,
-  imports: [MaterialModule, ReactiveFormsModule],
+  imports: [MaterialModule, ReactiveFormsModule, NgxSpinnerComponent],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.scss'
 })
 export class CheckoutComponent {
+  shareService = inject(SharedService)
+  dashboardService = inject(DashboardService)
+  toasterService = inject(ToasterService)
+  spinner = inject(NgxSpinnerService)
+  dialog = inject(MatDialog);
 
   PlaceOrderForm: FormGroup
   charges: any;
   shippingCharges: any;
-  constructor(private fb: FormBuilder) {
+  dialogRef: any;
 
-  }
-  shareService = inject(SharedService)
-  dashboardService = inject(DashboardService)
+
+  constructor(private fb: FormBuilder) {}
+
   ngOnInit() {
     this.PlaceOrderForm = this.fb.group({
       patient_name: ['', Validators.required],
@@ -39,9 +48,8 @@ export class CheckoutComponent {
     })
 
     this.shareService.checkoutSubject$.subscribe(items => {
-      debugger
       if (items) {
-        this.shippingCharges = items.res.data.shipping_charges
+        this.shippingCharges = items.res.data?.shipping_charges
         this.charges = items.res.data.items.reduce((z, a) => z + a.mrp, 0)
         this.PlaceOrderForm.patchValue({
           items: items.item
@@ -52,9 +60,33 @@ export class CheckoutComponent {
   }
 
   placeOrder() {
-
-    this.dashboardService.placeOrder(this.PlaceOrderForm.value).subscribe(res =>{
-    console.log(res)
-    })
+    this.dialogRef = this.dialog.open(OrderSuccessComponent, {
+      width: '50%',
+      panelClass: '',
+      data: 'res.data'
+    });
+    // this.spinner.show()
+    // setTimeout(() => {
+      
+    // }, 2000);
+    // this.dashboardService.placeOrder(this.PlaceOrderForm.value).subscribe({
+    //   next: (res:any) => {
+    //     if (res.status_code == "1" && res) {
+    //       this.toasterService.toast(res.status_message,  'success')
+    //       this.dialogRef = this.dialog.open(OrderSuccessComponent, {
+    //         width: '50%',
+    //         panelClass: 'custom-dialog-container',
+    //         data: res.data
+    //       });
+    //     } else if(res.status_code == "0" && res){
+    //       this.toasterService.toast(res.status_message,  'error')
+    //     }
+    //     this.spinner.hide()
+    //   },
+    //   error: (error) => {
+    //     this.spinner.hide()
+    //     this.toasterService.toast(error,  'error')
+    //   }
+    // })
   }
 }

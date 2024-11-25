@@ -1,9 +1,9 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, inject } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, effect, inject, signal } from '@angular/core';
 import { MaterialModule } from '../../material.module';
-import { AuthService } from '../../services/auth.service';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { ThemeManagerService } from '../../services/theme-manager.service';
-import { SharedService } from '../../services/shared.service';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../shared/services/auth.service';
+import { ThemeManagerService } from '../../shared/services/theme-manager.service';
+import { SharedService } from '../../shared/services/shared.service';
 
 @Component({
   selector: 'app-header',
@@ -16,29 +16,40 @@ import { SharedService } from '../../services/shared.service';
 export class HeaderComponent {
   authService = inject(AuthService)
   route = inject(Router)
+  private themeManager = inject(ThemeManagerService);
+  sharedStatus = inject(SharedService)
+
   badge: number;
+  theme = this.themeManager.theme;
+
+  darkmode = signal(false);
+  setDarkMode = effect(() => {
+    document.documentElement.classList.toggle('dark', this.darkmode())
+  })
+
+  ngOnInit() {
+    // let getlocalCartData:any = localStorage.getItem('cartData')
+    // getlocalCartData = JSON.parse(getlocalCartData)
+    // if(getlocalCartData){
+    // this.badge += getlocalCartData.length
+    // }
+    
+    this.sharedStatus.cartSubject$.subscribe(res => {
+      if (res) {
+        this.badge = res.length
+      }
+    }
+    )
+  }
+
   logout() {
     this.authService.logOut()
     this.route.navigate(['/signin'])
   }
 
-  private themeManager = inject(ThemeManagerService);
-  theme = this.themeManager.theme;
 
   toggleTheme() {
-    this.themeManager.toggleTheme();
+    // this.themeManager.toggleTheme();
   }
 
-  sharedStatus = inject(SharedService)
-  ngOnInit() {
-    debugger
-    this.sharedStatus.cartSubject$.subscribe(res => {
-      if(res){
-        console.log('cartres',res)
-        this.badge = res.length
-        console.log('',this.badge)
-      }
-    }
-    )
-  }
 }

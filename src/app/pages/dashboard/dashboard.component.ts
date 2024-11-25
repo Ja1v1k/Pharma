@@ -1,13 +1,14 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA, inject } from '@angular/core';
 import { MaterialModule } from '../../material.module';
 import { MatTableDataSource } from '@angular/material/table';
-import { DashboardService } from '../../services/dashboard.service';
 import { firstValueFrom } from 'rxjs';
 import { Medicine } from '../../interface/medicine.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { MedicineViewComponent } from '../dialogs/medicine-view/medicine-view.component';
-import { ToasterService } from '../../services/toaster.service';
-import { SharedService } from '../../services/shared.service';
+import { DashboardService } from '../../shared/services/dashboard.service';
+import { ToasterService } from '../../shared/services/toaster.service';
+import { SharedService } from '../../shared/services/shared.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-dashboard',
@@ -64,16 +65,16 @@ export class DashboardComponent {
       header: 'GST Percent',
       cell: (element: Medicine) => `${element.gst_percentage}`,
     },
-    {
-      columnDef: 'schedule_type',
-      header: 'Schedule Type',
-      cell: (element: Medicine) => `${element.schedule_type}`,
-    },
-    {
-      columnDef: 'cess_percentage',
-      header: 'Cess Percent',
-      cell: (element: Medicine) => `${element.cess_percentage}`,
-    }
+    // {
+    //   columnDef: 'schedule_type',
+    //   header: 'Schedule Type',
+    //   cell: (element: Medicine) => `${element.schedule_type}`,
+    // },
+    // {
+    //   columnDef: 'cess_percentage',
+    //   header: 'Cess Percent',
+    //   cell: (element: Medicine) => `${element.cess_percentage}`,
+    // }
   ];
   dataSource = new MatTableDataSource<Medicine>();
   displayedColumns = this.columns.map(c => c.columnDef);
@@ -82,6 +83,9 @@ export class DashboardComponent {
   cdr = inject(ChangeDetectorRef)
   toasterService = inject(ToasterService)
   sharedService = inject(SharedService)
+  dialog = inject(MatDialog);
+  spinner = inject(NgxSpinnerService)
+
 
   dialogRef: any;
   cartData: any[] = [];
@@ -101,7 +105,6 @@ export class DashboardComponent {
   }
 
   async ngOnInit() {
-
     await this.getAllMedicinesData()
   }
 
@@ -129,41 +132,60 @@ export class DashboardComponent {
     }
   }
 
-  dialog = inject(MatDialog);
 
   medicineView(data) {
-      this.dashboardService.getMedicineView(data.medicine_id).subscribe(res=>{
-        if(res.data == null){
-          this.toasterService.toast('No data found', 'Close','info');
-          return
+    this.spinner.show()
+
+    this.dashboardService.getMedicineView(data.medicine_id).subscribe(
+      {
+        next: (res) => {
+          if (res.data == null && res && res.status_code == "1") {
+            this.spinner.hide()
+            this.toasterService.toast('No data found',  'info');
+            return
+          } else if (res.status_code == "0") {
+            this.toasterService.toast(res.status_message,  'info');
+          }
+          this.spinner.hide()
+
+          this.dialogRef = this.dialog.open(MedicineViewComponent, {
+            width: '50%',
+            panelClass: 'custom-dialog-container',
+            data: res.data
+          });
+
+        }, error: (error) => {
+          this.spinner.hide()
+          this.toasterService.toast(error,  'error')
         }
-       this.dialogRef = this.dialog.open(MedicineViewComponent,{
-          width: '50%', 
-          panelClass: 'custom-dialog-container',
-          data:res.data
-        });
-      })
+      }
+    )
 
-      this.dialogRef.afterClosed().subscribe(result => {
-        console.log(`Dialog result: ${result}`);
-      });
   }
-  
-  checkOut(data){}
 
-  sendDataToCart(data){
+  checkOut(data) { }
+
+  sendDataToCart(data) {
     debugger
-    if(this.cartData.some(x=> data.medicine_id == x.data.id)){
-      this.toasterService.toast('Already added', 'Close','info');
-      return 
+    // let getlocalCartData:any = localStorage.getItem('cartData')
+    // getlocalCartData = JSON.parse(getlocalCartData)
+    // if(getlocalCartData && getlocalCartData?.some(x => data.medicine_id == x.data.id)){
+    //   this.toasterService.toast('Already added', 'warn');
+    //   return
+    // }
+
+    if (this.cartData.some(x => data.medicine_id == x.data.id)) {
+      this.toasterService.toast('Already added', 'warn');
+      return
     }
-    this.dashboardService.getMedicineView(data.medicine_id).subscribe(res=>{
-      if(res.data == null){
-        this.toasterService.toast('No data found', 'Close','info');
+    this.dashboardService.getMedicineView(data.medicine_id).subscribe(res => {
+      if (res.data == null) {
+        this.toasterService.toast('No data found',  'info');
         return
       }
-      this.cartData.push({...res,quantity:1})
+      this.cartData.push({ ...res, quantity: 1 })
       this.sharedService.sendCartData(this.cartData)
+      this.toasterService.toast('Added to cart Successfully','success')
     })
   }
 

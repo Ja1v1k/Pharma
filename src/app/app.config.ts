@@ -10,6 +10,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBbqguzXNCSYpgXynEzrYjaTOctKu9RQ7Y",
@@ -28,6 +29,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideHttpClient(),
     importProvidersFrom([
+      NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),
       AngularFireModule.initializeApp(firebaseConfig),
       AngularFireAuthModule,
     ]), provideAnimationsAsync()

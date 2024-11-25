@@ -6,17 +6,13 @@
   }
 }
 
-// .mat-toolbar {
-//     background: #004f4f !important;
-//     color: #00dddd !important;
-// }
+.mat-toolbar {
+    background: var(--sys-surface-container-highest) !important;
+    color: var(--sys-on-primary-container) !important;
+}
 
 .header {
     .example-spacer {
         flex: 1 1 auto;
     }
 }
-
-// mat-icon, mat-icon.mat-primary, mat-icon.mat-accent, mat-icon.mat-warn {
-//     color: #00dddd;
-// }
