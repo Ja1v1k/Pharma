@@ -1,0 +1,66 @@
+// /* patient-grid.component.scss */
+// :host {
+//     /* Light Theme Variables */
+//     --primary: rgb(139, 79, 37);
+//     --on-primary: rgb(255, 255, 255);
+//     --primary-container: rgb(255, 219, 200);
+//     --on-primary-container: rgb(49, 19, 0);
+//     --secondary: rgb(117, 88, 70);
+//     --background: rgb(255, 248, 245);
+//     --on-background: rgb(34, 26, 21);
+//     --surface-variant: rgb(244, 222, 211);
+//     --on-surface-variant: rgb(82, 68, 60);
+  
+//     /* Dark Theme Variables */
+//     @media (prefers-color-scheme: dark) {
+//       --primary: rgb(255, 182, 137);
+//       --on-primary: rgb(81, 35, 0);
+//       --primary-container: rgb(110, 56, 16);
+//       --on-primary-container: rgb(255, 219, 200);
+//       --secondary: rgb(229, 191, 169);
+//       --background: rgb(25, 18, 13);
+//       --on-background: rgb(240, 223, 215);
+//       --surface-variant: rgb(82, 68, 60);
+//       --on-surface-variant: rgb(215, 194, 184);
+//     }
+//   }
+
+.patient-grid-container {
+    // padding: 20px;
+    background-color: var(--background);
+    color: var(--on-background);
+
+    div{
+        margin-bottom: 16px;
+        .mat-mdc-form-field {
+          width: 100%;
+        }
+        button{
+            width: 10%;
+        }
+    }
+
+  }
+  
+  
+//   .mat-mdc-table {
+//     width: 100%;
+//     background-color: var(--surface-variant);
+//   }
+  
+//   .mat-mdc-header-row {
+//     background-color: var(--primary);
+//     color: var(--on-primary);
+//   }
+  
+//   .mat-mdc-row:nth-child(even) {
+//     background-color: rgba(var(--primary-container-rgb, 255, 219, 200), 0.1);
+//   }
+  
+//   .mat-mdc-row:hover {
+//     background-color: rgba(var(--primary-rgb, 139, 79, 37), 0.1);
+//   }
+  
+//   .mat-mdc-paginator {
+//     background-color: var(--surface-variant);
+//   }

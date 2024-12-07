@@ -1,6 +1,185 @@
-.checkout-container{
-    margin: 2rem 10%;
-.forminput{
-    width: 400px;
-}
-}
+:host {
+    display: block;
+    background-color: var(--sys-background);
+    color: var(--sys-on-background);
+    min-height: 100vh;
+    padding: 2rem 0;
+  }
+  
+  .checkout-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .checkout-wrapper {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    background-color: var(--sys-surface-bright);
+    border-radius: 24px;
+    box-shadow: 
+      0 16px 32px rgba(var(--sys-shadow), 0.08),
+      0 8px 16px rgba(var(--sys-shadow), 0.04);
+    border: 1px solid var(--sys-outline-variant);
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .checkout-wrapper:hover {
+    box-shadow: 
+      0 20px 40px rgba(var(--sys-shadow), 0.1),
+      0 10px 20px rgba(var(--sys-shadow), 0.06);
+  }
+  
+  .customer-info, .order-summary {
+    padding: 2.5rem;
+  }
+  
+  .section-title {
+    font-size: 1.6rem;
+    color: var(--sys-primary);
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 0.75rem;
+  }
+  
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(to right, var(--sys-primary), var(--sys-primary-container));
+    border-radius: 2px;
+  }
+  
+  .info-card, .summary-card {
+    background-color: var(--sys-surface-container-low);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+  }
+  
+  .form-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+  
+  .location-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .full-width {
+    grid-column: 1 / -1;
+  }
+  
+  mat-form-field {
+    width: 100%;
+  }
+  
+  mat-form-field.mat-form-field-appearance-outline .mat-form-field-outline {
+    color: var(--sys-outline);
+    transition: all 0.3s ease;
+  }
+  
+  mat-form-field.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline {
+    color: var(--sys-primary);
+    border-width: 2px;
+  }
+  
+  .summary-details {
+    background-color: var(--sys-surface-container);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid var(--sys-outline-variant);
+  }
+  
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--sys-outline-variant);
+    color: var(--sys-on-surface);
+    transition: background-color 0.2s ease;
+  }
+  
+  .summary-row:hover {
+    background-color: var(--sys-surface-container-low);
+  }
+  
+  .summary-row:last-child {
+    border-bottom: none;
+  }
+  
+  .summary-row.total {
+    font-weight: bold;
+    color: var(--sys-primary);
+    margin-top: 1rem;
+    font-size: 1.1rem;
+  }
+  
+  .place-order-btn {
+    width: 100%;
+    padding: 1.1rem;
+    border-radius: 12px;
+    background-color: var(--sys-primary);
+    color: var(--sys-on-primary);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 12px rgba(var(--sys-shadow), 0.1);
+    border: none;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .place-order-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      120deg, 
+      transparent, 
+      rgba(255,255,255,0.3), 
+      transparent
+    );
+    transition: all 0.5s ease;
+  }
+  
+  .place-order-btn:hover::before {
+    left: 100%;
+  }
+  
+  .place-order-btn:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(var(--sys-shadow), 0.15);
+  }
+  
+  .place-order-btn:disabled {
+    background-color: var(--sys-surface-variant);
+    color: var(--sys-on-surface-variant);
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+  
+  @media (max-width: 768px) {
+    .checkout-wrapper {
+      grid-template-columns: 1fr;
+      border-radius: 16px;
+    }
+  
+    .location-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .customer-info, .order-summary {
+      padding: 1.5rem;
+    }
+  }

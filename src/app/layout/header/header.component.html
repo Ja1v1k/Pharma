@@ -1,11 +1,15 @@
 <mat-toolbar class="header gap-4">
     <button mat-icon-button class="primary" aria-label="Example icon-button with menu icon">
-      <mat-icon>menu</mat-icon>
+      <mat-icon class="cursor-pointer">menu</mat-icon>
     </button>
-    <span>Vita Pharms</span>
+    <span class="cursor-pointer" routerLink="/dashboard">Vita Pharms</span>
+    <span class="example-spacer"></span>
+    <a mat-raised-button routerLink="/dashboard" >Dashboard</a>
+    <a mat-raised-button routerLink="/patients" >Patients</a>
+    <a mat-raised-button>Orders</a>
     <span class="example-spacer"></span>
     <button
-    class="theme-switch"
+    class="theme-switch cursor-pointer"
     type="button"
     aria-label="Toggle theme"
     mat-icon-button

@@ -4,107 +4,125 @@
 $Practice-theme: mat.define-theme((color: (use-system-variables:true)));
 
 html {
-  --sys-primary: rgb(139 79 37);
-  --sys-surface-tint: rgb(139 79 37);
-  --sys-on-primary: rgb(255 255 255);
-  --sys-primary-container: rgb(255 219 200);
-  --sys-on-primary-container: rgb(49 19 0);
-  --sys-secondary: rgb(117 88 70);
-  --sys-on-secondary: rgb(255 255 255);
-  --sys-secondary-container: rgb(255 219 200);
-  --sys-on-secondary-container: rgb(43 23 9);
-  --sys-tertiary: rgb(97 97 51);
-  --sys-on-tertiary: rgb(255 255 255);
-  --sys-tertiary-container: rgb(231 229 172);
-  --sys-on-tertiary-container: rgb(29 29 0);
-  --sys-error: rgb(186 26 26);
-  --sys-on-error: rgb(255 255 255);
-  --sys-error-container: rgb(255 218 214);
-  --sys-on-error-container: rgb(65 0 2);
-  --sys-background: rgb(255 248 245);
-  --sys-on-background: rgb(34 26 21);
-  --sys-surface: rgb(255 248 245);
-  --sys-on-surface: rgb(34 26 21);
-  --sys-surface-variant: rgb(244 222 211);
-  --sys-on-surface-variant: rgb(82 68 60);
-  --sys-outline: rgb(132 116 107);
-  --sys-outline-variant: rgb(215 194 184);
-  --sys-shadow: rgb(0 0 0);
-  --sys-scrim: rgb(0 0 0);
-  --sys-inverse-surface: rgb(56 46 41);
-  --sys-inverse-on-surface: rgb(255 237 229);
-  --sys-inverse-primary: rgb(255 182 137);
-  --sys-primary-fixed: rgb(255 219 200);
-  --sys-on-primary-fixed: rgb(49 19 0);
-  --sys-primary-fixed-dim: rgb(255 182 137);
-  --sys-on-primary-fixed-variant: rgb(110 56 16);
-  --sys-secondary-fixed: rgb(255 219 200);
-  --sys-on-secondary-fixed: rgb(43 23 9);
-  --sys-secondary-fixed-dim: rgb(229 191 169);
-  --sys-on-secondary-fixed-variant: rgb(92 65 48);
-  --sys-tertiary-fixed: rgb(231 229 172);
-  --sys-on-tertiary-fixed: rgb(29 29 0);
-  --sys-tertiary-fixed-dim: rgb(203 201 146);
-  --sys-on-tertiary-fixed-variant: rgb(73 73 30);
-  --sys-surface-dim: rgb(231 215 207);
-  --sys-surface-bright: rgb(255 248 245);
-  --sys-surface-container-lowest: rgb(255 255 255);
-  --sys-surface-container-low: rgb(255 241 234);
-  --sys-surface-container: rgb(252 235 226);
-  --sys-surface-container-high: rgb(246 229 220);
-  --sys-surface-container-highest: rgb(240 223 215);
+  --sys-background: #fdf8ff;
+  --sys-on-background: #1c1b20;
+  --sys-surface: #fdf8ff;
+  --sys-surface-dim: #ddd8e0;
+  --sys-surface-bright: #fdf8ff;
+  --sys-surface-container-lowest: #ffffff;
+  --sys-surface-container-low: #f7f2fa;
+  --sys-surface-container: #f1ecf4;
+  --sys-surface-container-high: #ebe6ee;
+  --sys-surface-container-highest: #e6e1e9;
+  --sys-on-surface: #1c1b20;
+  --sys-surface-variant: #e6e0ec;
+  --sys-on-surface-variant: #48454e;
+  --sys-inverse-surface: #312f36;
+  --sys-inverse-on-surface: #f4eff7;
+  --sys-outline: #79757f;
+  --sys-outline-variant: #cac4cf;
+  --sys-shadow: #000000;
+  --sys-scrim: #000000;
+  --sys-surface-tint: #625690;
+  --sys-primary: #625690;
+  --sys-on-primary: #ffffff;
+  --sys-primary-container: #e7deff;
+  --sys-on-primary-container: #4a3e76;
+  --sys-inverse-primary: #ccbdff;
+  --sys-secondary: #63568f;
+  --sys-on-secondary: #ffffff;
+  --sys-secondary-container: #e8ddff;
+  --sys-on-secondary-container: #4b3e76;
+  --sys-tertiary: #8a4a64;
+  --sys-on-tertiary: #ffffff;
+  --sys-tertiary-container: #ffd9e4;
+  --sys-on-tertiary-container: #6f334c;
+  --sys-error: #904a43;
+  --sys-on-error: #ffffff;
+  --sys-error-container: #ffdad5;
+  --sys-on-error-container: #73342d;
+  --sys-neutral: #79767d;
+  --sys-neutral-variant: #79757f;
+  --sys-primary-fixed: #e7deff;
+  --sys-primary-fixed-dim: #ccbdff;
+  --sys-on-primary-fixed: #1e1048;
+  --sys-on-primary-fixed-variant: #4a3e76;
+  --sys-secondary-fixed: #e8ddff;
+  --sys-secondary-fixed-dim: #cdbdff;
+  --sys-on-secondary-fixed: #1f1048;
+  --sys-on-secondary-fixed-variant: #4b3e76;
+  --sys-tertiary-fixed: #ffd9e4;
+  --sys-tertiary-fixed-dim: #ffb0cd;
+  --sys-on-tertiary-fixed: #390720;
+  --sys-on-tertiary-fixed-variant: #6f334c;
+  --sys-inverse-secondary: #cdbdff;
+  --sys-inverse-tertiary: #ffb0cd;
+  --sys-inverse-error: #ffb4ab;
+  --sys-error-fixed: #ffdad5;
+  --sys-error-fixed-dim: #ffb4ab;
+  --sys-on-error-fixed: #3b0907;
+  --sys-on-error-fixed-variant: #73342d;
 }
 
 .dark {
-  --sys-primary: rgb(255 182 137);
-  --sys-surface-tint: rgb(255 182 137);
-  --sys-on-primary: rgb(81 35 0);
-  --sys-primary-container: rgb(110 56 16);
-  --sys-on-primary-container: rgb(255 219 200);
-  --sys-secondary: rgb(229 191 169);
-  --sys-on-secondary: rgb(67 43 28);
-  --sys-secondary-container: rgb(92 65 48);
-  --sys-on-secondary-container: rgb(255 219 200);
-  --sys-tertiary: rgb(203 201 146);
-  --sys-on-tertiary: rgb(50 50 9);
-  --sys-tertiary-container: rgb(73 73 30);
-  --sys-on-tertiary-container: rgb(231 229 172);
-  --sys-error: rgb(255 180 171);
-  --sys-on-error: rgb(105 0 5);
-  --sys-error-container: rgb(147 0 10);
-  --sys-on-error-container: rgb(255 218 214);
-  --sys-background: rgb(25 18 13);
-  --sys-on-background: rgb(240 223 215);
-  --sys-surface: rgb(25 18 13);
-  --sys-on-surface: rgb(240 223 215);
-  --sys-surface-variant: rgb(82 68 60);
-  --sys-on-surface-variant: rgb(215 194 184);
-  --sys-outline: rgb(159 141 131);
-  --sys-outline-variant: rgb(82 68 60);
-  --sys-shadow: rgb(0 0 0);
-  --sys-scrim: rgb(0 0 0);
-  --sys-inverse-surface: rgb(240 223 215);
-  --sys-inverse-on-surface: rgb(56 46 41);
-  --sys-inverse-primary: rgb(139 79 37);
-  --sys-primary-fixed: rgb(255 219 200);
-  --sys-on-primary-fixed: rgb(49 19 0);
-  --sys-primary-fixed-dim: rgb(255 182 137);
-  --sys-on-primary-fixed-variant: rgb(110 56 16);
-  --sys-secondary-fixed: rgb(255 219 200);
-  --sys-on-secondary-fixed: rgb(43 23 9);
-  --sys-secondary-fixed-dim: rgb(229 191 169);
-  --sys-on-secondary-fixed-variant: rgb(92 65 48);
-  --sys-tertiary-fixed: rgb(231 229 172);
-  --sys-on-tertiary-fixed: rgb(29 29 0);
-  --sys-tertiary-fixed-dim: rgb(203 201 146);
-  --sys-on-tertiary-fixed-variant: rgb(73 73 30);
-  --sys-surface-dim: rgb(25 18 13);
-  --sys-surface-bright: rgb(65 55 49);
-  --sys-surface-container-lowest: rgb(20 13 8);
-  --sys-surface-container-low: rgb(34 26 21);
-  --sys-surface-container: rgb(38 30 25);
-  --sys-surface-container-high: rgb(49 40 35);
-  --sys-surface-container-highest: rgb(61 51 45);
+    --sys-background: #141318;
+    --sys-on-background: #e6e1e9;
+    --sys-surface: #141318;
+    --sys-surface-dim: #141318;
+    --sys-surface-bright: #3a383e;
+    --sys-surface-container-lowest: #0f0d13;
+    --sys-surface-container-low: #1c1b20;
+    --sys-surface-container: #201f24;
+    --sys-surface-container-high: #2b292f;
+    --sys-surface-container-highest: #36343a;
+    --sys-on-surface: #e6e1e9;
+    --sys-surface-variant: #48454e;
+    --sys-on-surface-variant: #cac4cf;
+    --sys-inverse-surface: #e6e1e9;
+    --sys-inverse-on-surface: #312f36;
+    --sys-outline: #938f99;
+    --sys-outline-variant: #48454e;
+    --sys-shadow: #000000;
+    --sys-scrim: #000000;
+    --sys-surface-tint: #ccbdff;
+    --sys-primary: #ccbdff;
+    --sys-on-primary: #34275e;
+    --sys-primary-container: #4a3e76;
+    --sys-on-primary-container: #e7deff;
+    --sys-inverse-primary: #625690;
+    --sys-secondary: #cdbdff;
+    --sys-on-secondary: #34275e;
+    --sys-secondary-container: #4b3e76;
+    --sys-on-secondary-container: #e8ddff;
+    --sys-tertiary: #ffb0cd;
+    --sys-on-tertiary: #531d36;
+    --sys-tertiary-container: #6f334c;
+    --sys-on-tertiary-container: #ffd9e4;
+    --sys-error: #ffb4ab;
+    --sys-on-error: #561e19;
+    --sys-error-container: #73342d;
+    --sys-on-error-container: #ffdad5;
+    --sys-neutral: #79767d;
+    --sys-neutral-variant: #79757f;
+    --sys-primary-fixed: #e7deff;
+    --sys-primary-fixed-dim: #ccbdff;
+    --sys-on-primary-fixed: #1e1048;
+    --sys-on-primary-fixed-variant: #4a3e76;
+    --sys-secondary-fixed: #e8ddff;
+    --sys-secondary-fixed-dim: #cdbdff;
+    --sys-on-secondary-fixed: #1f1048;
+    --sys-on-secondary-fixed-variant: #4b3e76;
+    --sys-tertiary-fixed: #ffd9e4;
+    --sys-tertiary-fixed-dim: #ffb0cd;
+    --sys-on-tertiary-fixed: #390720;
+    --sys-on-tertiary-fixed-variant: #6f334c;
+    --sys-inverse-secondary: #63568f;
+    --sys-inverse-tertiary: #8a4a64;
+    --sys-inverse-error: #904a43;
+    --sys-error-fixed: #ffdad5;
+    --sys-error-fixed-dim: #ffb4ab;
+    --sys-on-error-fixed: #3b0907;
+    --sys-on-error-fixed-variant: #73342d;
 }
 
 html,
@@ -227,12 +245,12 @@ body {
 // //dialog
 
 .custom-dialog-container {
-//   // background-color: #004f4f;
-//   color: #f5f5f5;
-//   max-width: 50%;
-//   padding: 24px;
-//   border-radius: 8px;
-  --mat-dialog-container-max-width:1000px !important
+  //   // background-color: #004f4f;
+  //   color: #f5f5f5;
+  //   max-width: 50%;
+  //   padding: 24px;
+  //   border-radius: 8px;
+  --mat-dialog-container-max-width: 1000px !important
 }
 
 
@@ -262,8 +280,8 @@ body {
 
 // snack or toast 
 .errorCustomToast {
-  --mdc-snackbar-container-color: #fce7e7 !important;
-  --mdc-snackbar-supporting-text-color: #F44336 !important;
+  -c-snackbar-color: #fce7e7 !important;
+  -c-snackbar-text-color: #F44336 !important;
   --mat-mdc-snack-bar-button-color: var(--sys-on-error);
   border: 2px solid #F44336;
   border-left: 8px solid #f44336 !important;
@@ -271,26 +289,26 @@ body {
 }
 
 .successCustomToast {
-  --mdc-snackbar-container-color: #e2fee2 !important;
-  --mdc-snackbar-supporting-text-color: #47a44b !important;
+  -c-snackbar-color: #e2fee2 !important;
+  -c-snackbar-text-color: #47a44b !important;
   --mat-mdc-snack-bar-button-color: #FFFFFF !important;
   border: 2px solid #4CAF50;
   border-left: 8px solid #4CAF50 !important;
-   border-radius: 0 5px 5px 0;
+  border-radius: 0 5px 5px 0;
 }
 
 .infoCustomToast {
-  --mdc-snackbar-container-color: #f0f7ff !important;
-  --mdc-snackbar-supporting-text-color: #2563eb !important;
+  -c-snackbar-color: #f0f7ff !important;
+  -c-snackbar-text-color: #2563eb !important;
   --mat-mdc-snack-bar-button-color: #212121 !important;
   border: 2px solid #e0e2e6;
   border-left: 8px solid #2563eb !important;
-   border-radius: 0 5px 5px 0;
+  border-radius: 0 5px 5px 0;
 }
 
 .warnCustomToast {
-  --mdc-snackbar-container-color: #fff4d7 !important;
-  --mdc-snackbar-supporting-text-color: #f9c740 !important;
+  -c-snackbar-color: #fff4d7 !important;
+  -c-snackbar-text-color: #f9c740 !important;
   --mat-mdc-snack-bar-button-color: #212121 !important;
   border: 2px solid #f9c740;
   border-left: 8px solid #f9c740 !important;
@@ -304,3 +322,8 @@ body {
 
 // // html, body { height: 100%; }
 // // body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.cursor-pointer {
+  cursor: pointer;
+}

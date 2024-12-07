@@ -28,6 +28,11 @@ export const routes: Routes = [
         path: 'checkout',
         canActivate:[authGuard],
         loadComponent: () => import('./pages/checkout/checkout.component').then(m => m.CheckoutComponent)
+    },
+    {
+        path: 'patients',
+        canActivate:[authGuard],
+        loadComponent: () => import('./pages/patient/patient.component').then(m => m.PatientComponent)
     }
     
 ];

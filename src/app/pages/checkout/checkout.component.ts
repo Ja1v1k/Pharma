@@ -7,11 +7,12 @@ import { ToasterService } from '../../shared/services/toaster.service';
 import { NgxSpinnerComponent, NgxSpinnerService } from 'ngx-spinner';
 import { MatDialog } from '@angular/material/dialog';
 import { OrderSuccessComponent } from '../dialogs/order-success/order-success.component';
+import { CurrencyPipe, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-checkout',
   standalone: true,
-  imports: [MaterialModule, ReactiveFormsModule, NgxSpinnerComponent],
+  imports: [MaterialModule, ReactiveFormsModule, NgxSpinnerComponent,NgIf, CurrencyPipe],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.scss'
 })

@@ -1,0 +1,78 @@
+// .customer-info {
+//     // max-width: 800px;
+//     // margin: 0 auto;
+//     // padding: 20px;
+//   }
+  
+//   .info-card {
+//     background-color: var(--surface-variant);
+//   }
+
+.section-title {
+    font-size: 1.6rem;
+    color: var(--sys-primary);
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 0.75rem;
+  }
+  
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(to right, var(--sys-primary), var(--sys-primary-container));
+    border-radius: 2px;
+  }
+  
+  .patient-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .location-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    grid-column: 1 / -1;
+  
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .full-width {
+    grid-column: 1 / -1;
+  }
+  
+//   .section-title {
+//     color: var(--primary);
+//     font-weight: bold;
+//   }
+  
+  mat-form-field {
+    width: 100%;
+  }
+  
+  button[mat-raised-button] {
+    grid-column: 1 / -1;
+    // background-color: var(--primary);
+    // color: var(--on-primary);
+  }
+
+
+
+  

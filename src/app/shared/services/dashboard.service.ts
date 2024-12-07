@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
@@ -11,24 +12,24 @@ export class DashboardService {
   // private http = inject(HttpClient)
   getMedicines(searchstring): Observable<any> {
     const data = new FormData();
-    data.append('apikey', 'wFIMP75eG1sQEh8vVAdXykgzF4mLhDw3')
+    data.append('apikey', environment.apikey)
     data.append('searchstring', searchstring)
-    return this.http.post('https://dev-api.evitalrx.in/v1/fulfillment/medicines/search', data)
+    return this.http.post(environment.domain + 'medicines/search', data)
   }
   getMedicineView(medicineId: any): Observable<any> {
     const data = new FormData();
-    data.append('apikey', 'wFIMP75eG1sQEh8vVAdXykgzF4mLhDw3')
+    data.append('apikey', environment.apikey)
     data.append('medicine_id', medicineId)
-    return this.http.post('https://dev-api.evitalrx.in/v1/fulfillment/medicines/view', data)
+    return this.http.post(environment.domain + 'medicines/view', data)
   }
 
   checkOut(items: any) {
     const data = new FormData();
-    data.append('apikey', 'wFIMP75eG1sQEh8vVAdXykgzF4mLhDw3')
+    data.append('apikey', environment.apikey)
     data.append('latitude', '12.970612')
     data.append('longitude', '77.6382433')
     data.append('items', items)
-    return this.http.post('https://dev-api.evitalrx.in/v1/fulfillment/orders/checkout', data)
+    return this.http.post(environment.domain + 'orders/checkout', data)
   }
 
   placeOrder(data: any) {
@@ -46,6 +47,6 @@ export class DashboardService {
     formData.append('chemist_id', data.chemist_id);
     formData.append('latitude', data.latitude);
     formData.append('longitude', data.longitude);
-    return this.http.post('https://dev-api.evitalrx.in/v1/fulfillment/orders/place_order', formData)
+    return this.http.post(environment.domain + 'orders/place_order', formData)
   }
 }

@@ -1,0 +1,100 @@
+<div class="patient-info">
+    <mat-card class="info-card">
+        <mat-card-header>
+            <mat-card-title class="section-title">
+                Patient Checkout Details
+            </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+            <form [formGroup]="PatientForm" (ngSubmit)="onSubmit()" class="patient-form">
+                <div class="form-grid">
+                    <!-- First Name -->
+                    <mat-form-field appearance="outline">
+                        <mat-label>First Name</mat-label>
+                        <input matInput formControlName="first_name" placeholder="Enter first name">
+                        <mat-error
+                            *ngIf="PatientForm.get('first_name')?.invalid && PatientForm.get('first_name')?.touched">
+                            First Name is required
+                        </mat-error>
+                    </mat-form-field>
+
+                    <!-- Last Name -->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Last Name</mat-label>
+                        <input matInput formControlName="last_name" placeholder="Enter last name">
+                        <mat-error
+                            *ngIf="PatientForm.get('last_name')?.invalid && PatientForm.get('last_name')?.touched">
+                            Last Name is required
+                        </mat-error>
+                    </mat-form-field>
+
+                    <!-- Date of Birth -->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Date of Birth</mat-label>
+                        <input matInput [matDatepicker]="dobPicker" formControlName="dob"
+                            placeholder="Choose date of birth">
+                        <mat-datepicker-toggle matSuffix [for]="dobPicker"></mat-datepicker-toggle>
+                        <mat-datepicker #dobPicker></mat-datepicker>
+                        <mat-error *ngIf="PatientForm.get('dob')?.invalid && PatientForm.get('dob')?.touched">
+                            Date of Birth is required
+                        </mat-error>
+                    </mat-form-field>
+
+                    <!-- Gender -->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Gender</mat-label>
+                        <mat-select formControlName="gender">
+                          <mat-option *ngFor="let gender of genders" [value]="gender.key">
+                            {{gender.value}}
+                          </mat-option>
+                        </mat-select>
+                        <mat-error
+                          *ngIf="PatientForm.get('gender')?.invalid && PatientForm.get('gender')?.touched">
+                          Gender is required
+                        </mat-error>
+                      </mat-form-field>
+
+                    <!-- Blood Group -->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Blood Group</mat-label>
+                        <mat-select formControlName="blood_group">
+                            <mat-option *ngFor="let group of bloodGroups" [value]="group">
+                                {{group}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error
+                            *ngIf="PatientForm.get('blood_group')?.invalid && PatientForm.get('blood_group')?.touched">
+                            Blood Group is required
+                        </mat-error>
+                    </mat-form-field>
+
+                    <!-- Mobile Number -->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Mobile Number</mat-label>
+                        <input matInput formControlName="mobile" placeholder="Enter mobile number">
+                        <mat-error
+                            *ngIf="PatientForm.get('mobile')?.invalid && PatientForm.get('mobile')?.touched">
+                            Valid 10-digit mobile number is required
+                        </mat-error>
+                    </mat-form-field>
+
+                    <!-- zip -->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Zip Code</mat-label>
+                        <input matInput formControlName="zipcode" placeholder="Enter zip code">
+                        <mat-error
+                            *ngIf="PatientForm.get('zipcode')?.invalid && PatientForm.get('zipcode')?.touched">
+                            Valid zip code is required
+                        </mat-error>
+                    </mat-form-field>
+
+                    <!-- Submit Button -->
+                    <button mat-raised-button color="primary" type="submit" [disabled]="PatientForm.invalid">
+                        Submit Details
+                    </button>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>
